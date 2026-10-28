@@ -374,10 +374,14 @@ enum Diagnostics {
                     _ = try KeyboardLighting.apply(test, connection: connection)
                     print("PASS: breathing effect, brightness 4/4, speed and multicolor read-back")
                     test.effect = 21
-                    test.keys = Dictionary(
-                        uniqueKeysWithValues: (0..<126).map {
-                            ($0, RGB(UInt8($0), UInt8(255 - $0), UInt8(($0 * 2) % 256)))
-                        })
+                    var keyColors: [Int: RGB] = [:]
+                    for index in 0..<126 {
+                        let red = UInt8(index)
+                        let green = UInt8(255 - index)
+                        let blue = UInt8((index * 2) % 256)
+                        keyColors[index] = RGB(red, green, blue)
+                    }
+                    test.keys = keyColors
                     _ = try KeyboardLighting.apply(test, connection: connection)
                     print("PASS: all 126 per-key colors read back correctly")
                     test.effect = 0
