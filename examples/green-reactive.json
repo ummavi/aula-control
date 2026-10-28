@@ -1,0 +1,16 @@
+{
+  "id": "00000000-0000-4000-8000-000000000001",
+  "name": "Green reactive",
+  "settings": {
+    "effect": 12,
+    "brightness": 4,
+    "speed": 2,
+    "colorful": false,
+    "color": { "r": 0, "g": 255, "b": 0 },
+    "keys": {}
+  },
+  "auxiliary": {
+    "sideStrips": { "effect": 3, "colorIndex": 1, "brightness": 4, "speed": 2 },
+    "lightBar": { "effect": 3, "colorIndex": 2, "brightness": 4, "speed": 2 }
+  }
+}

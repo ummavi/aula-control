@@ -1,0 +1,35 @@
+name: Bug report
+description: Report a connection, interface, or lighting problem.
+body:
+  - type: input
+    id: model
+    attributes:
+      label: Exact keyboard model
+      description: Plain F108, F108 Pro, or another model? Only the plain F108 receiver is supported.
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: macOS and AULA Control versions
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps and expected behavior
+      description: Include the lighting zone, effect, brightness, RGB or selected swatch, and connection mode.
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: What did the physical keyboard do?
+      description: Describe visible lighting separately from the preview and receiver read-back.
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Optional diagnostics
+      description: Paste the app error or --diagnose output. Remove personal paths. Do not attach raw backups or your preset library by default.

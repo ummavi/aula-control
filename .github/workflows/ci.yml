@@ -1,0 +1,30 @@
+name: Build and test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  macos:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [macos-15, macos-15-intel]
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Test without hardware
+        run: swift test
+      - name: Build and verify bundle signature
+        run: ./scripts/build.sh
+      - name: Check diagnostic entry points
+        run: |
+          'build/AULA Control.app/Contents/MacOS/AulaControl' --help
+          'build/AULA Control.app/Contents/MacOS/AulaControl' --check-preset-format
+          'build/AULA Control.app/Contents/MacOS/AulaControl' --verify-previews

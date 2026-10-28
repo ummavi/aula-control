@@ -1,0 +1,44 @@
+AULA Control protocol references
+
+Wireless framing and per-key transfer layout reference: Aula-Manager
+https://github.com/free-soldier28/Aula-Manager
+https://github.com/free-soldier28/Aula-Manager/blob/main/LICENSE
+
+MIT License
+
+Copyright (c) 2026 Roman
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Additional protocol reference (device identity and read commands):
+https://github.com/dnviti/aula-x99-pro-driver-linux/blob/master/PROTOCOL.md
+
+F108-specific configuration and palette layout were checked against the OEM driver:
+https://aulagear.com/blogs/software/aula-f108-driver
+
+Plain F108 hardware shortcut reference:
+https://aulagear.com/blogs/manuals/aula-f108-manual
+
+AULA is a trademark of its owner. This independent open-source utility is not affiliated with AULA.
+
+Interface palette: Flexoki by Steph Ango, MIT license.
+See FLEXOKI_LICENSE.txt in this bundle.
+
+Interface typeface: Inter, SIL Open Font License 1.1.
+See Fonts/Inter-OFL.txt in this bundle.
