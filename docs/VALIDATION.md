@@ -47,7 +47,8 @@ This was a comparison of selected serialization routines, not execution of the e
 - Palette restoration rebuilds reserved regions instead of promising byte-for-byte restoration of invalid padding.
 - The connection label is based on the last successful read.
 - Locally ad-hoc signed updates can require a new Input Monitoring grant.
-- Intel CI is configured, but its first remote run remains to be verified after publication.
+- Intel tests and signed builds passed on a hosted runner; live GUI rendering remains unverified there.
+- One report of the keyboard stopping during development was resolved by restarting it. The cause has not been established or reproduced.
 
 ## Local 1.4.3 release preparation
 
@@ -55,4 +56,10 @@ The local preparation run passed 30 tests: 24 core tests and 6 application tests
 
 The source ZIP was extracted into a fresh directory, where all tests, the bundle build, and the preset-format diagnostic passed. The binary ZIP was extracted separately; its signature and preset diagnostic also passed. Scans found no remaining developer account name or absolute home-directory path in the public files, packaged executable, or either ZIP's file contents. Local documentation links and Swift formatting checks passed.
 
-This cleanup did not rerun hardware-writing diagnostics or change the installed app, keyboard settings, or privacy grants. Hardware observations above remain the earlier development evidence. Hosted CI and Intel execution have not run as part of this local preparation.
+This cleanup did not rerun hardware-writing diagnostics or change the installed app, keyboard settings, or privacy grants. Hardware observations above remain the earlier development evidence.
+
+## Hosted CI
+
+After publication, [run 40673143043](https://github.com/ummavi/aula-control/actions/runs/40673143043) passed all 30 tests, release builds, signature checks, help output, and preset diagnostics on both Apple silicon and Intel. Apple silicon also passed live-preview checks. Intel's live-preview process aborted inside Apple's `MTLLoader` with `Target device architecture is nil` before completing a frame check. This does not establish GUI behavior on a physical Intel Mac. CI runs live rendering checks on Apple silicon and retains non-rendering checks on both architectures.
+
+Hosted jobs have no access to the development keyboard and provide no additional physical-device evidence.

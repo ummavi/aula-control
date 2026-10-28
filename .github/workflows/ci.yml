@@ -27,4 +27,9 @@ jobs:
         run: |
           'build/AULA Control.app/Contents/MacOS/AulaControl' --help
           'build/AULA Control.app/Contents/MacOS/AulaControl' --check-preset-format
+      # The hosted Intel runner aborts in MTLLoader before Canvas can render.
+      # Keep unit tests, signed builds, and non-rendering diagnostics on both.
+      - name: Check live previews
+        if: matrix.runner == 'macos-15'
+        run: |
           'build/AULA Control.app/Contents/MacOS/AulaControl' --verify-previews

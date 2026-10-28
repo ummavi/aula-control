@@ -23,6 +23,12 @@ This removes the existing permission entry. Add the installed app with **+** aft
 
 Input Monitoring is needed for access to this HID interface. The app retains only vendor report `13` and discards normal typing input. It does not log keystrokes.
 
+## The keyboard stops typing
+
+Quit AULA Control and other keyboard configuration tools. If typing does not return, switch the keyboard off and back on, leaving it in 2.4G mode. If needed, unplug and reconnect the receiver. Avoid sending more settings while ordinary typing is unavailable.
+
+One stoppage reported during development cleared after restarting the keyboard. Its cause has not been established or reproduced. Record whether the lights stayed on, whether quitting the app helped, and whether the same problem occurs with the app closed. A returned lighting configuration does not establish that normal typing is working. Do not use a factory reset, firmware update, or snapshot restoration as the first recovery step.
+
 ## The receiver returns incomplete data or does not reply
 
 An incomplete response does not establish that the keyboard is asleep. Check the dongle, connection mode, and whether the keyboard is responsive, then retry **Read from keyboard** or Apply. Close other keyboard configuration tools while testing. If the issue persists, try a direct USB connection for the receiver rather than a hub and collect the exact error.

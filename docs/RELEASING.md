@@ -11,7 +11,7 @@ swift test
 'build/AULA Control.app/Contents/MacOS/AulaControl' --verify-previews
 ```
 
-Review [validation coverage](VALIDATION.md) before writing release claims. Offline tests establish protocol and preview behavior, not the physical behavior of every keyboard or effect. GitHub Actions checks both configured macOS architectures after the repository is hosted; until those jobs run, report Intel support as unverified.
+Review [validation coverage](VALIDATION.md) before writing release claims. Offline tests establish protocol and preview behavior, not the physical behavior of every keyboard or effect. GitHub Actions checks tests, signed builds, and non-rendering diagnostics on both architectures. Live preview checks run on Apple silicon because the hosted Intel runner aborts inside Metal. Report Intel GUI behavior as unverified until checked on suitable hardware.
 
 The version and build number live in `Resources/Info.plist`; the interface reads its displayed version from the bundle. The neutral bundle identifier is `org.aulacontrol.AulaControl`. Changing the bundle identifier or ad-hoc code signature can require a new Input Monitoring grant. Keep the installed app stable while testing permissions.
 

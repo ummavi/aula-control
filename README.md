@@ -24,7 +24,7 @@ The interface uses a black background, square controls, and a shared display pal
 | Identity prefix | `03 00 00 00 01 BA` |
 | macOS | 14 or later |
 | Build tools | Swift 5.9 or later; Xcode or its command-line tools |
-| Architecture | Apple silicon tested; Intel CI configured but not yet independently verified |
+| Architecture | Apple silicon tested; Intel tests and builds pass in CI, with GUI rendering unverified |
 
 The receiver IDs are shared by several models. The app checks identity and response formats before writing. **F108 Pro, wired USB configuration, and Bluetooth configuration are not supported.** Key remapping, macros, and firmware updates are outside this project's scope. See [validation coverage](docs/VALIDATION.md) for the difference between implemented effects and physically checked behavior.
 
