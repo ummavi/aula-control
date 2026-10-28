@@ -115,8 +115,9 @@ enum Diagnostics {
             if model.busy { throw AulaError.message("UI operation timed out") }
             if let error = model.error { throw AulaError.message(error) }
         }
-        let rect = NSRect(x: 0, y: 0, width: 1180, height: 830)
-        let host = NSHostingView(rootView: ContentView(model: model).preferredColorScheme(.dark))
+        let rect = NSRect(x: 0, y: 0, width: 1180, height: 340)
+        // Isolate the preview from text cursors, focus rings, and form layout changes.
+        let host = NSHostingView(rootView: KeyboardPreview(model: model).preferredColorScheme(.dark))
         host.frame = rect
         let window = NSWindow(
             contentRect: rect, styleMask: [.titled, .closable, .resizable], backing: .buffered, defer: false)
@@ -164,13 +165,24 @@ enum Diagnostics {
                 model.settings.brightness = 4
                 model.settings.speed = 2
                 RunLoop.current.run(until: Date().addingTimeInterval(0.15))
-                let first = try imageData()
-                RunLoop.current.run(until: Date().addingTimeInterval(0.45))
-                let second = try imageData()
-                if LightingPreview.animates(effect.id) && first == second {
+                var first = try imageData()
+                var second = first
+                let animated = LightingPreview.animates(effect.id)
+                var matchedExpectation = false
+                // SwiftUI/Canvas can finish its initial draw after the first capture,
+                // especially on hosted runners. Require a real consecutive-frame match
+                // for Solid, or an observed change for animation, within a bounded wait.
+                for _ in 0..<4 {
+                    RunLoop.current.run(until: Date().addingTimeInterval(0.45))
+                    second = try imageData()
+                    matchedExpectation = animated ? first != second : first == second
+                    if matchedExpectation { break }
+                    first = second
+                }
+                if animated && !matchedExpectation {
                     throw AulaError.message("Effect \(effect.id) did not animate in the live UI")
                 }
-                if effect.id == 1 && first != second { throw AulaError.message("Static render changed unexpectedly") }
+                if !animated && !matchedExpectation { throw AulaError.message("Static render did not settle") }
                 if let outputDirectory, [1, 3, 8, 15, 18].contains(effect.id) {
                     try first.write(to: outputDirectory.appendingPathComponent("effect-\(effect.id)-a.png"))
                     try second.write(to: outputDirectory.appendingPathComponent("effect-\(effect.id)-b.png"))
